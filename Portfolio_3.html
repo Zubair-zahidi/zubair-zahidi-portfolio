@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zubair Zahidi | AI Developer & Cybersecurity Specialist</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Professional Fonts: Space Grotesk for headings, Inter for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ---------- CSS Reset & Base ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0b0e14;
+            --bg-secondary: #151a24;
+            --surface: #1e2632;
+            --accent-primary: #2a7de1;
+            --accent-secondary: #00c2a8;
+            --accent-tertiary: #7c4dff;
+            --text-primary: #edf2f7;
+            --text-secondary: #a0b3cc;
+            --border-glow: rgba(42, 125, 225, 0.3);
+            --card-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.6);
+            --transition-smooth: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, var(--accent-secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 70%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-tertiary));
+            border-radius: 4px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* ---------- Tech Grid Background (replaces cosmic) ---------- */
+        #tech-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            background: radial-gradient(circle at 20% 30%, #13223b, #0b0e14 70%);
+            overflow: hidden;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(42, 125, 225, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(42, 125, 225, 0.08) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: drift 25s linear infinite;
+        }
+
+        .glow-orb {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 194, 168, 0.12) 0%, transparent 70%);
+            filter: blur(80px);
+            top: -100px;
+            right: -100px;
+            animation: pulseOrb 12s infinite alternate;
+        }
+
+        .glow-orb.second {
+            left: -50px;
+            bottom: -50px;
+            background: radial-gradient(circle, rgba(124, 77, 255, 0.12) 0%, transparent 70%);
+            animation-delay: -6s;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--accent-primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            box-shadow: 0 0 15px var(--accent-primary);
+            animation: floatParticle 20s infinite ease-in-out;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        @keyframes pulseOrb {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 0.9; transform: scale(1.2); }
+        }
+
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            25% { transform: translateY(-30px) translateX(15px); }
+            50% { transform: translateY(10px) translateX(-20px); }
+            75% { transform: translateY(-15px) translateX(25px); }
+        }
+
+        /* ---------- Header & Navigation ---------- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(12px);
+            background-color: rgba(11, 14, 20, 0.75);
+            border-bottom: 1px solid rgba(42, 125, 225, 0.15);
+        }
+
+        header.scrolled {
+            padding: 14px 0;
+            background-color: rgba(11, 14, 20, 0.9);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .logo i {
+            color: var(--accent-secondary);
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        /* ---------- Hero Section ---------- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 90px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(42, 125, 225, 0.15);
+            color: var(--accent-secondary);
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 194, 168, 0.3);
+        }
+
+        .typewriter h2 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            border-right: 3px solid var(--accent-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            animation: typing 3s steps(30, end), blink 0.7s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-primary) }
+        }
+
+        .tech-avatar {
+            width: 360px;
+            height: 360px;
+            border-radius: 38% 62% 42% 58% / 53% 48% 52% 47%;
+            background: linear-gradient(145deg, #1e2632, #0f141c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 30px 40px -10px rgba(0,0,0,0.6), inset 0 0 0 2px rgba(42,125,225,0.2);
+            border: 1px solid var(--accent-primary);
+            animation: morphBlob 8s infinite alternate;
+        }
+
+        .tech-avatar i {
+            font-size: 8.5rem;
+            color: var(--accent-secondary);
+            filter: drop-shadow(0 0 20px rgba(0,194,168,0.5));
+        }
+
+        @keyframes morphBlob {
+            0% { border-radius: 38% 62% 42% 58% / 53% 48% 52% 47%; }
+            50% { border-radius: 58% 42% 36% 64% / 48% 60% 40% 52%; }
+            100% { border-radius: 45% 55% 60% 40% / 55% 45% 55% 45%; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 16px 42px;
+            background: var(--accent-primary);
+            color: white;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 25px;
+            transition: all var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 20px rgba(42,125,225,0.3);
+            letter-spacing: 0.3px;
+        }
+
+        .cta-button i {
+            margin-left: 10px;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #1a5bbf;
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(42,125,225,0.5);
+        }
+
+        .cta-button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* ---------- Skills Section ---------- */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-card {
+            background: rgba(30, 38, 50, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 24px;
+            padding: 32px 24px;
+            transition: all var(--transition-smooth);
+            border: 1px solid rgba(42, 125, 225, 0.15);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--accent-primary);
+            background: rgba(30, 38, 50, 0.9);
+            box-shadow: var(--card-shadow), 0 0 20px rgba(42,125,225,0.2);
+        }
+
+        .skill-card i {
+            font-size: 2.8rem;
+            margin-bottom: 24px;
+            color: var(--accent-secondary);
+        }
+
+        .skill-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 14px;
+        }
+
+        /* ---------- Projects Section ---------- */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 20px 25px -12px black;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-tertiary);
+            box-shadow: 0 30px 40px -15px #000000cc, 0 0 0 1px var(--accent-primary);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(145deg, #1a2a3f, #0e1620);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid var(--accent-primary);
+        }
+
+        .project-image i {
+            font-size: 4.5rem;
+            color: var(--accent-secondary);
+            opacity: 0.9;
+        }
+
+        .project-content {
+            padding: 28px 22px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .project-tag {
+            background: rgba(42, 125, 225, 0.12);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border: 1px solid rgba(42,125,225,0.3);
+        }
+
+        /* ---------- Contact Section ---------- */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(21, 26, 36, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            padding: 50px 40px;
+            border: 1px solid rgba(42, 125, 225, 0.25);
+            box-shadow: 0 30px 40px -20px black;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 45px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.03);
+            color: var(--text-secondary);
+            font-size: 1.7rem;
+            transition: all var(--transition-smooth);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-link:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 15px 25px -8px var(--accent-primary);
+            border-color: transparent;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            background: #0a0e14;
+            padding: 35px 0;
+            text-align: center;
+            border-top: 1px solid rgba(42,125,225,0.2);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 992px) {
+            h1 { font-size: 3.2rem; }
+            h2 { font-size: 2.4rem; }
+            .hero-content { flex-direction: column; text-align: center; }
+            .typewriter h2 { white-space: normal; animation: none; border-right: none; }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links {
+                position: fixed; top: 80px; left: 0; width: 100%;
+                background: rgba(11,14,20,0.98); flex-direction: column;
+                align-items: center; padding: 30px 0; gap: 25px;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: 0.3s;
+                backdrop-filter: blur(15px);
+            }
+            .nav-links.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            .skills-container, .projects-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2.5rem; }
+            .tech-avatar { width: 260px; height: 260px; }
+            .tech-avatar i { font-size: 6rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Tech Background -->
+    <div id="tech-background">
+        <div class="grid-overlay"></div>
+        <div class="glow-orb"></div>
+        <div class="glow-orb second"></div>
+        <!-- subtle particles -->
+        <div class="particle" style="width: 4px; height: 4px; top: 15%; left: 8%;"></div>
+        <div class="particle" style="width: 6px; height: 6px; top: 70%; left: 85%; background: var(--accent-secondary);"></div>
+        <div class="particle" style="width: 3px; height: 3px; top: 45%; left: 20%;"></div>
+        <div class="particle" style="width: 5px; height: 5px; top: 80%; left: 40%; background: var(--accent-tertiary);"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-shield-halved"></i>
+                    <span>ZUBAIR</span>
+                </a>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="badge"><i class="fas fa-bolt" style="margin-right: 8px;"></i> AI · SECURITY · ARCHITECTURE</span>
+                    <h1>Zubair Zahidi</h1>
+                    <div class="typewriter">
+                        <h2>AI Developer & Cybersecurity Specialist</h2>
+                    </div>
+                    <p>Architecting resilient, intelligent systems at the intersection of advanced machine learning and proactive cybersecurity. I design and implement solutions that leverage predictive analytics and rigorous vulnerability assessment to safeguard digital ecosystems.</p>
+                    <p>My expertise encompasses full‑stack AI development, secure code auditing, and the creation of high‑performance software with an emphasis on reliability and threat mitigation.</p>
+                    <a href="#projects" class="cta-button">Examine my work <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-image">
+                    <div class="tech-avatar">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>Professional Synopsis</h2>
+            <div class="about-content">
+                <p>With over eight years of immersion in software engineering and artificial intelligence, I have cultivated a rigorous, evidence‑based approach to developing systems that are not only intelligent but also inherently secure. My work is driven by a conviction that robust architecture and proactive vulnerability management are non‑negotiable in an era of escalating cyber threats.</p>
+                <p>I possess extensive proficiency in Python, Java, C++, and modern JavaScript ecosystems, and I routinely integrate security auditing into the development lifecycle. My background includes designing anomaly detection frameworks, conducting penetration tests on web applications, and hardening cloud infrastructures. I am equally comfortable optimising neural networks as I am dissecting OWASP Top 10 vulnerabilities.</p>
+                <p>Currently, my focus is on advancing secure‑by‑design AI pipelines and contributing to open‑source security tooling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section (includes Cybersecurity) -->
+    <section id="skills">
+        <div class="container">
+            <h2>Core Competencies</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python & AI/ML</h3>
+                    <p>Deep learning (PyTorch, TensorFlow), predictive modelling, NLP, and automated decision systems.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Cybersecurity & Web VAPT</h3>
+                    <p>Web application vulnerability assessment, penetration testing, secure code review, OWASP compliance.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-java"></i>
+                    <h3>Java & Enterprise</h3>
+                    <p>High‑concurrency backend services, Spring ecosystem, secure API development.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>C++ / Systems</h3>
+                    <p>Performance‑critical applications, memory‑safe design, and algorithmic optimisation.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>TypeScript & Web</h3>
+                    <p>Reactive frontends, secure SPA architecture, and advanced data visualisation.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Security Analytics</h3>
+                    <p>Intrusion detection systems, log analysis, and threat intelligence integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section (cybersecurity + AI, no fantasy names) -->
+    <section id="projects">
+        <div class="container">
+            <h2>Notable Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>WebSentinel Scanner</h3>
+                        <p>An automated web vulnerability assessment framework that detects SQLi, XSS, and misconfigurations. Integrates with CI/CD pipelines for continuous security validation.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">OWASP</span>
+                            <span class="project-tag">DevSecOps</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>ThreatMatrix AI</h3>
+                        <p>An unsupervised anomaly detection engine that analyses network traffic patterns to identify zero‑day threats and lateral movement within enterprise environments.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">PyTorch</span>
+                            <span class="project-tag">Elastic</span>
+                            <span class="project-tag">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>SecureAuth Gateway</h3>
+                        <p>A zero‑trust authentication proxy with built‑in behavioural biometrics and adaptive MFA, engineered to mitigate credential‑based attacks.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Go</span>
+                            <span class="project-tag">JWT</span>
+                            <span class="project-tag">Zero Trust</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Establish Contact</h2>
+            <div class="contact-container">
+                <p style="font-size: 1.2rem; color: var(--text-primary);">I welcome inquiries regarding collaborative research, security consulting, or advanced development engagements. Please reach out via any channel below.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="#" class="social-link" aria-label="Keybase"><i class="fab fa-keybase"></i></a>
+                </div>
+                <a href="mailto:zubair.zahidi@proton.me" class="cta-button" style="margin-top: 45px;">Send a direct message <i class="fas fa-paper-plane"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Zubair Zahidi. All intellectual property reserved.</p>
+            <p style="font-size: 0.95rem; opacity: 0.7;">AI Development · Vulnerability Research · Secure Architecture</p>
+        </div>
+    </footer>
+
+    <script>
+        (function(){
+            "use strict";
+
+            // Header scroll effect
+            const header = document.getElementById('header');
+            function handleScroll() {
+                if (window.scrollY > 50) header.classList.add('scrolled');
+                else header.classList.remove('scrolled');
+            }
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
+
+            // Mobile menu
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    const icon = menuToggle.querySelector('i');
+                    if (navLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+
+            // Intersection Observer for subtle reveals
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('.skill-card, .project-card, .contact-container').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add extra particles programmatically for dynamism
+            const bg = document.getElementById('tech-background');
+            for (let i=0; i<6; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 5 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.animationDelay = Math.random() * 10 + 's';
+                p.style.background = i % 2 === 0 ? 'var(--accent-primary)' : 'var(--accent-secondary)';
+                bg.appendChild(p);
+            }
+        })();
+    </script>
+</body>
+</html>

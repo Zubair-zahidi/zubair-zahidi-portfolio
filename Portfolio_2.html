@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zubair Zahidi | AI Developer & Programmer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0a0e29;
+            --secondary-color: #1a1f4b;
+            --accent-color: #6c63ff;
+            --accent-glow: #8a84ff;
+            --text-color: #e0e0ff;
+            --text-secondary: #a0a0ff;
+            --star-color: #ffffff;
+            --planet-color: #4d4dff;
+            --nebulae-color: #ff63a5;
+            --transition-slow: 0.8s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+            --transition-normal: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.2s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            color: var(--text-color);
+            background-color: var(--primary-color);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, var(--accent-color), var(--nebulae-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 3rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color), transparent);
+            border-radius: 3px;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* Cosmic Background */
+        #cosmic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background-color: var(--star-color);
+            border-radius: 50%;
+            animation: twinkle 5s infinite alternate;
+        }
+
+        .star-small { width: 1px; height: 1px; }
+        .star-medium { width: 2px; height: 2px; }
+        .star-large { width: 3px; height: 3px; }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--planet-color), var(--primary-color));
+            box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.5),
+                        inset 5px 5px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .comet {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .nebulae {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--nebulae-color), transparent);
+            filter: blur(40px);
+            opacity: 0.2;
+        }
+
+        /* Keyframe Animations */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        @keyframes comet-trail {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0;
+                width: 6px;
+            }
+            10% {
+                opacity: 1;
+                width: 100px;
+            }
+            100% {
+                transform: translateX(-1000px) translateY(500px);
+                opacity: 0;
+                width: 6px;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 5px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent-glow); }
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition-normal);
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 14, 41, 0.8);
+        }
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--text-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: pulse 3s infinite;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition-fast);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition-normal);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+            animation: slideInRight 1s ease-out;
+        }
+
+        .floating-avatar {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-color), var(--nebulae-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(108, 99, 255, 0.4);
+        }
+
+        .floating-avatar i {
+            font-size: 8rem;
+            color: white;
+        }
+
+        .floating-avatar:before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 30%, rgba(108, 99, 255, 0.1) 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .typewriter h2 {
+            overflow: hidden;
+            border-right: .15em solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, var(--accent-color), var(--nebulae-color));
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-normal);
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--nebulae-color), var(--accent-color));
+            transition: var(--transition-normal);
+            z-index: -1;
+        }
+
+        .cta-button:hover:before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.4);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-card {
+            background: rgba(26, 31, 75, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: rgba(26, 31, 75, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition-normal);
+            position: relative;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.3);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--accent-color), var(--nebulae-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image i {
+            font-size: 5rem;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .project-tag {
+            background: rgba(108, 99, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(26, 31, 75, 0.7);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(108, 99, 255, 0.2);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(108, 99, 255, 0.2);
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link:before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--accent-color), var(--nebulae-color));
+            transform: scale(0);
+            border-radius: 50%;
+            transition: var(--transition-normal);
+        }
+
+        .social-link:hover:before {
+            transform: scale(1);
+        }
+
+        .social-link i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 14, 41, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid rgba(108, 99, 255, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .floating-avatar {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .floating-avatar i {
+                font-size: 6rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 14, 41, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 20px;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition-normal);
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .skills-container, .projects-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .floating-avatar {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .floating-avatar i {
+                font-size: 4.5rem;
+            }
+            
+            .typewriter h2 {
+                font-size: 1.8rem;
+                white-space: normal;
+                border-right: none;
+                animation: none;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background -->
+    <div id="cosmic-bg"></div>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>ZUBIR</span>
+                </a>
+                
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Zubair Zahidi</h1>
+                    <div class="typewriter">
+                        <h2>AI Developer & Programmer</h2>
+                    </div>
+                    <p>Specializing in advanced AI solutions with expertise in Python, Java, C++, and modern web technologies. Creating innovative applications that blend artificial intelligence with cutting-edge design.</p>
+                    <p>Passionate about astronomical visualization, fantasy UI design, and high-level animation systems.</p>
+                    <a href="#projects" class="cta-button">Explore My Work</a>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="floating-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <p>I am a passionate AI developer and programmer with over 8 years of experience in creating sophisticated software solutions. My expertise spans multiple programming languages including Python, Java, C++, and JavaScript, with a focus on artificial intelligence, machine learning, and data visualization.</p>
+                <p>My work combines technical precision with creative design, resulting in applications that are both powerful and visually stunning. I specialize in creating astronomical and fantasy-themed interfaces with advanced animations and interactive elements.</p>
+                <p>When I'm not coding, I'm exploring the latest advancements in AI technology, studying astrophysics concepts for inspiration, or experimenting with new animation techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python AI/ML</h3>
+                    <p>Advanced machine learning, neural networks, data science, and automation using Python.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fab fa-java"></i>
+                    <h3>Java Development</h3>
+                    <p>Enterprise applications, Android development, and backend systems using Java.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fab fa-js-square"></i>
+                    <h3>JavaScript & Frameworks</h3>
+                    <p>Interactive web applications, animations, and advanced visualizations with JS/TS.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>C++ Programming</h3>
+                    <p>High-performance systems, game engines, and complex algorithmic implementations.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>AI & Machine Learning</h3>
+                    <p>Deep learning, computer vision, natural language processing, and predictive modeling.</p>
+                </div>
+                
+                <div class="skill-card">
+                    <i class="fas fa-cube"></i>
+                    <h3>3D & Animation</h3>
+                    <p>Advanced CSS animations, WebGL, Three.js, and interactive 3D visualizations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-star-and-crescent"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>AstroVision AI</h3>
+                        <p>An AI-powered astronomical visualization platform that predicts celestial events and generates real-time 3D models of star systems.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Three.js</span>
+                            <span class="project-tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Neural Fantasy UI</h3>
+                        <p>A fantasy-themed UI framework with AI-powered adaptive interfaces and advanced animation systems.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cosmic Engine</h3>
+                        <p>A C++ game engine with built-in AI for procedural generation of fantasy worlds and celestial environments.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">C++</span>
+                            <span class="project-tag">OpenGL</span>
+                            <span class="project-tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <p>I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hello, feel free to reach out!</p>
+                
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-codepen"></i>
+                    </a>
+                </div>
+                
+                <a href="mailto:zubair@example.com" class="cta-button" style="margin-top: 40px;">Send Message</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Zubair Zahidi. All Rights Reserved.</p>
+            <p>Advanced AI Developer & Programmer | Astronomical & Fantasy Design Specialist</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Create cosmic background elements
+        function createCosmicBackground() {
+            const cosmicBg = document.getElementById('cosmic-bg');
+            
+            // Create stars
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                const starSize = Math.random() * 3;
+                const starClass = starSize < 1 ? 'star-small' : starSize < 2 ? 'star-medium' : 'star-large';
+                
+                star.classList.add('star', starClass);
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                star.style.opacity = Math.random() * 0.7 + 0.3;
+                
+                cosmicBg.appendChild(star);
+            }
+            
+            // Create planets
+            for (let i = 0; i < 4; i++) {
+                const planet = document.createElement('div');
+                const planetSize = Math.random() * 100 + 50;
+                
+                planet.classList.add('planet');
+                planet.style.width = `${planetSize}px`;
+                planet.style.height = `${planetSize}px`;
+                planet.style.left = `${Math.random() * 80 + 10}%`;
+                planet.style.top = `${Math.random() * 80 + 10}%`;
+                planet.style.animation = `float ${Math.random() * 20 + 10}s infinite alternate ease-in-out`;
+                planet.style.animationDelay = `${Math.random() * 5}s`;
+                
+                cosmicBg.appendChild(planet);
+            }
+            
+            // Create nebulae
+            for (let i = 0; i < 3; i++) {
+                const nebulae = document.createElement('div');
+                const nebulaeSize = Math.random() * 400 + 200;
+                
+                nebulae.classList.add('nebulae');
+                nebulae.style.width = `${nebulaeSize}px`;
+                nebulae.style.height = `${nebulaeSize}px`;
+                nebulae.style.left = `${Math.random() * 80 + 10}%`;
+                nebulae.style.top = `${Math.random() * 80 + 10}%`;
+                nebulae.style.background = `radial-gradient(circle, 
+                    ${Math.random() > 0.5 ? 'rgba(255, 99, 165, 0.3)' : 'rgba(108, 99, 255, 0.3)'}, 
+                    transparent)`;
+                
+                cosmicBg.appendChild(nebulae);
+            }
+            
+            // Create comets
+            setInterval(() => {
+                const comet = document.createElement('div');
+                comet.classList.add('comet');
+                comet.style.left = `${Math.random() * 100 + 100}%`;
+                comet.style.top = `${Math.random() * 100}%`;
+                comet.style.animation = `comet-trail ${Math.random() * 10 + 5}s linear forwards`;
+                
+                cosmicBg.appendChild(comet);
+                
+                // Remove comet after animation completes
+                setTimeout(() => {
+                    if (comet.parentNode) {
+                        comet.parentNode.removeChild(comet);
+                    }
+                }, 15000);
+            }, 3000);
+        }
+        
+        // Header scroll effect
+        function handleHeaderScroll() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        // Mobile menu toggle
+        function setupMobileMenu() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+            
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuToggle.innerHTML = navLinks.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close menu when clicking on a link
+            const navItems = document.querySelectorAll('.nav-links a');
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+        }
+        
+        // Animate elements on scroll
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements with animation classes
+            const animatedElements = document.querySelectorAll('.skill-card, .project-card, .contact-container');
+            animatedElements.forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createCosmicBackground();
+            setupMobileMenu();
+            setupScrollAnimations();
+            
+            // Initial header state
+            handleHeaderScroll();
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', handleHeaderScroll);
+            
+            // Add hover effect to skill cards
+            const skillCards = document.querySelectorAll('.skill-card');
+            skillCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.animation = 'pulse 0.5s ease';
+                });
+                
+                card.addEventListener('animationend', function() {
+                    this.style.animation = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
