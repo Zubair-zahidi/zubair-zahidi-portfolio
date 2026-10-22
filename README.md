@@ -1,6 +1,6 @@
 # Portfolio Iterations
 
-Five versions of a personal portfolio, exploring responsive layouts, animated interfaces, and ways to present projects. The repository documents a progression in design choices rather than a single deployed application.
+Five personal portfolio iterations documenting experiments with responsive layouts, project galleries, and animated interfaces. The repository documents a progression in design choices rather than a single deployed application.
 
 ![Portfolio design preview](img1.png)
 
@@ -21,3 +21,9 @@ Open a version in a browser, or run `python -m http.server 8000` from the reposi
 The versions explore dark surfaces, visual hierarchy, project galleries, and CSS/JavaScript interactions. Review each page on the target devices before reusing it; no universal accessibility or performance result is claimed.
 
 Created by **Zubair Zahidi**. See [the current GitHub profile](https://github.com/Zubair-zahidi) for recent work.
+
+## Cloud review preview
+
+![Cloud capture of zubair-zahidi-portfolio](docs/cloud-review/desktop-2026-10-22.png)
+
+Captured from the running project on 22 October 2026. This is a static portfolio page served by a local HTTP server.
